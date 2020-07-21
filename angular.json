@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "billie-quiz"
+    }
+  },
+  "defaultProject": "billie-quiz",
+  "cli": {
+    "analytics": "b8aee866-8436-4b1e-becb-79a8e8fac6ca"
+  }
 }
