@@ -7,7 +7,7 @@ resources:
   - repository: self
 variables:
 - name: repo
-  value: pchampkin/billiequiz-ui
+  value: pchampkin/billiequiz-ang-ui
 - name: version
   value: 1.0.0
 - name: tag
