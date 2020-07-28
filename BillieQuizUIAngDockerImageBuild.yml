@@ -1,0 +1,71 @@
+trigger:
+  branches:
+    include:
+    - master
+resources:
+  repositories:
+  - repository: self
+variables:
+- name: repo
+  value: pchampkin/billiequiz-ui
+- name: version
+  value: 1.0.0
+- name: tag
+  value: $(version).$(Build.BuildId)
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: CmdLine@2
+      displayName: Task - Run UI tests
+      inputs:
+        script: >
+          docker build -t billiequiz-uiimage-test:latest --target test .
+
+          docker run --name billiequiz-uicontainer-test billiequiz-uiimage-test:latest
+
+          docker cp billiequiz-uicontainer-test:/usr/src/app/billiequizUI.test.xml $(Build.ArtifactStagingDirectory)/billiequizUI.test.xml
+
+          docker cp billiequiz-uicontainer-test:/usr/src/app/coverage/cobertura-coverage.xml $(Build.ArtifactStagingDirectory)/cobertura-coverage.xml
+    - task: PublishCodeCoverageResults@1
+      displayName: Task - Publish UI coverage results
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: $(Build.ArtifactStagingDirectory)/*-coverage.xml
+    - task: PublishTestResults@2
+      displayName: Task - Publish UI test results
+      inputs:
+        testResultsFormat: JUnit
+        testResultsFiles: '**/*.test.xml'
+        searchFolder: $(Build.ArtifactStagingDirectory)
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: BillieQuiz UI Tests
+    - task: Docker@2
+      displayName: Task - Build image
+      inputs:
+        buildContext: .
+        containerRegistry: DockerHubServiceConnection
+        repository: $(repo)
+        command: build
+        Dockerfile: '**/Dockerfile'
+        tags: >
+          latest
+
+          $(tag)
+    - task: Docker@2
+      displayName: Task - Push image
+      inputs:
+        containerRegistry: DockerHubServiceConnection
+        repository: $(repo)
+        command: push
+        tags: >
+          latest
+
+          $(tag)
+
