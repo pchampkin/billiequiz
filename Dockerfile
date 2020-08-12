@@ -8,7 +8,7 @@ COPY . .
 CMD npm run test
 
 FROM test AS final
-# EXPOSE 3000
+EXPOSE 80
 ENV NODE_ENV production
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
