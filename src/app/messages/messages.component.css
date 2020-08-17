@@ -7,13 +7,13 @@ body {
     margin: 2em;
 }
 body, input[text], button {
-    color: crimson;
+    color: turquoise;
     font-family: Cambria, Georgia;
 }
 
 button.clear {
     font-family: Arial;
-    background-color: #eee;
+    background-color: #eee;         
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
@@ -28,10 +28,10 @@ button:disabled {
     color: #aaa;
     cursor: auto;
 }
-button.clear {
+/* button.clear {
     color: #333;
     margin-bottom: 12px;
-}
+} */
 .messages {
     margin: 0 0 2em 0;
     list-style-type: none;
