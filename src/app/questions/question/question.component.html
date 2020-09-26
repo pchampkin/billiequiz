@@ -1,0 +1,14 @@
+<div>
+    <div>
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{{question.questionText}}</h5>
+                <li *ngFor="let answer of question.answerArray">
+                    <p> 
+                        <button class="button" (click)="checkAnswer(index)">{{answer}}</button>
+                    </p>
+                </li>
+          </div>
+        </div>
+    </div>
+</div>
