@@ -10,7 +10,9 @@ import { Question } from './question';
 })
 export class QuestionService {
   // private billieQuizSvcUrl = 'billiequizwebapp.azurewebsites.net/BillieQuiz';
-  private billieQuizSvcUrl = 'api/questions';
+  // private billieQuizSvcUrl = 'api/questions';
+  private billieQuizSvcUrl = 'http://localhost:5000/billiequiz';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'allication/json' })
   }
@@ -23,14 +25,21 @@ export class QuestionService {
     this.messageService.add('HeroService', message);
   }
   
-  getQuestion(id: number): Observable<Question> {
-    const url = `${this.billieQuizSvcUrl}/${id}`;
+  getQuestion(): Observable<Question> {
+    const url = `${this.billieQuizSvcUrl}/getquestion`;
     return this.http.get<Question>(url).pipe(
-      tap(_ => this.log(`fetched question id=${id}`)),
-      catchError(this.handleError<Question>(`getQuestion id=${id}`))
+      tap(_ => this.log(`fetched question id=${_.questionId}`)),
+      catchError(this.handleError<Question>('getQuestion'))
     );
   }
   
+  checkAnswer(questionId: string, ansIdx: number): Observable<boolean> {
+    const url = `${this.billieQuizSvcUrl}/checkAnswer/${questionId}/${ansIdx + 1}`;
+    return this.http.get<boolean>(url).pipe(
+      tap(_ => this.log(`checkAnswer id=${questionId} idx=${ansIdx} ${_}`)),
+      catchError(this.handleError<boolean>(`checkAnswer id=${questionId} idx=${ansIdx}`))
+    );
+  }
 
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.billieQuizSvcUrl}`)

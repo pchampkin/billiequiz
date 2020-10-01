@@ -15,6 +15,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { QuestionComponent } from './questions/question/question.component';
+import { AnswerComponent } from './answers/answer/answer.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +26,18 @@ import { QuestionComponent } from './questions/question/question.component';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    QuestionComponent
+    QuestionComponent,
+    AnswerComponent,
+    MessageBoxComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryQuestionDataService, { dataEncapsulation: false }
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryQuestionDataService, { dataEncapsulation: false }
+    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

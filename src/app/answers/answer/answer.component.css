@@ -1,0 +1,8 @@
+.MessageBox {
+    text-align: center;
+    color: black;
+    font-family: sans-serif;
+    font-size: large;
+    height: 50px;
+    width: 100px;
+}
