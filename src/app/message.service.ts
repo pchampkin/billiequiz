@@ -9,7 +9,7 @@ export class MessageService {
 
   add(source: string, text: string) {
     console.log(text);
-    this.messages.push({source, text});
+    this.messages = [{source, text}].concat(this.messages);
   }
 
   clear() {

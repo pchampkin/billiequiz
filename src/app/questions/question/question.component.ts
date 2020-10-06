@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/question';
 import { QuestionService } from 'src/app/question.service';
-import { AnswerComponent } from 'src/app/answers/answer/answer.component';
 import { MessageBoxService } from 'src/app/message-box.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-question',
@@ -10,6 +11,7 @@ import { MessageBoxService } from 'src/app/message-box.service';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  private ngUnsubscribe$ = new Subject();
   question: Question;
   answer: boolean;
   showAnswer: string;
@@ -19,6 +21,13 @@ export class QuestionComponent implements OnInit {
     private messageBoxSvc: MessageBoxService) { }
 
   ngOnInit(): void {
+    this.messageBoxSvc.messageBoxClosed$
+      .pipe(
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe(m => {
+        if (this.answer === true) this.getQuestion();
+      });
     this.getQuestion();
   }
 
@@ -33,6 +42,7 @@ export class QuestionComponent implements OnInit {
       .subscribe(ans => {
         this.answer = ans; 
         console.log(`got answer ${ans}`);
+        // this.showDialog();
         this.messageBoxSvc.showMessage(`You are so ${ans}!`);
       });
   }

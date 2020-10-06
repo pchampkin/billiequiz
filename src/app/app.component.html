@@ -1,14 +1,14 @@
+<nav>
+    <a routerLink="/dashboard">Dashboard </a>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
 <div class="App">
     <div class="App-header">
         <img src='assets/images/Billie.jpg' class="App-logo" alt="logo" />
         <h1 class="App-title">{{title}}</h1>
     </div>
+    <button (click)="questionComp.getQuestion()">New Question</button>
+    <app-question #questionComp></app-question>
 </div>
-<button (click)="questionComp.getQuestion()">New Question</button>
-<app-question #questionComp></app-question>
-<nav>
-    <a routerLink="/dashboard">Dashboard </a>
-    <a routerLink="/heroes">Heroes</a>
-</nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

@@ -1,13 +1,18 @@
 <div>
-    <div className="card">
-        <div className="card-body">
-            <h5 className="card-title">{{question.questionText}}</h5>
-            <li *ngFor="let answer of question.answerArray; let i = index">
+    <div>
+        <div>
+            <h5>{{question.questionText}}</h5>
+            <div *ngFor="let answer of question.answerArray; let i = index">
                 <p> 
-                    <button class="button" (click)="checkAnswer(i)">{{answer}}</button>
+                    <button (click)="checkAnswer(i)">{{answer}}</button>
                 </p>
-            </li>
+            </div>
         </div>
+        <!-- <app-message-box id="modal_1" class="hhidden">
+            You are so {{answer}}!
+            <button (click)="closeDialog()"> Close Dialog</button>
+        </app-message-box> -->
+
         <app-message-box></app-message-box>
     </div>
 </div>
