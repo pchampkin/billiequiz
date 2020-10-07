@@ -11,8 +11,8 @@ import { Question } from './question';
 export class QuestionService {
   // private billieQuizSvcUrl = 'billiequizwebapp.azurewebsites.net/BillieQuiz';
   // private billieQuizSvcUrl = 'api/questions';
-  private billieQuizSvcUrl = 'http://localhost:5000/billiequiz';
-
+  // private billieQuizSvcUrl = 'http://localhost:5000/billiequiz';
+  private billieQuizSvcUrl = 'https://billiequizsvcdockerappservice.azurewebsites.net/billiequiz';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'allication/json' })
   }
