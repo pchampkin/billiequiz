@@ -20,6 +20,7 @@ export class AuthService {
   async checkAuthenticated() {
     const authenticated = await this.authClient.session.exists();
     this.isAuthenticated.next(authenticated);
+    console.log(`Authentication says ${authenticated}`)
     return authenticated;
   }
 

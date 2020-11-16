@@ -50,11 +50,25 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatCardModule
-    // HttpClientInMemoryWebApiModule.forRoot(
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatProgressSpinnerModule
+        // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryQuestionDataService, { dataEncapsulation: false }
     // )
   ],
