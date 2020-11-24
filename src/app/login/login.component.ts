@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/game';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/dashboard';
 
     this.form = this.fb.group({
       username: ['', Validators.email],
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       await this.router.navigate([this.returnUrl]);
     }
   }
+  
 
   async onSubmit() {
     this.loginInvalid = false;

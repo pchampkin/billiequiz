@@ -1,4 +1,9 @@
-
+.expanded-toolbar {
+    background-color: #72da56;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
 .App {
     text-align: center;
     color: white;

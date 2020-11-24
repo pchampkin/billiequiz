@@ -1,14 +1,28 @@
-<nav>
-    <a routerLink="/dashboard">Dashboard </a>
-    <a routerLink="/heroes">Heroes</a>
-</nav>
+<mat-toolbar class="expanded-toolbar">
+    <span>
+        <a class="nav-link" routerLink="/admin">Admin</a>
+    </span>
+
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+            <mat-icon>power_settings_new</mat-icon>
+            Login
+        </button>
+        <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+        </button>
+        <button mat-button routerLink="/dashboard">
+            <mat-icon>gamepad</mat-icon>
+            Play
+        </button>
+    </div>
+</mat-toolbar>
 <div class="App">
     <div class="App-header">
         <img src='assets/images/Billie.jpg' class="App-logo" alt="logo" />
         <h1 class="App-title">{{title}}</h1>
     </div>
-    <button (click)="questionComp.getQuestion()">New Question</button>
-    <app-question #questionComp></app-question>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
 <app-messages></app-messages>

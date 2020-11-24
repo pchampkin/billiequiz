@@ -34,6 +34,7 @@ import { QuestionComponent } from './questions/question/question.component';
 import { AnswerComponent } from './answers/answer/answer.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LoginComponent } from './login/login.component';
     QuestionComponent,
     AnswerComponent,
     MessageBoxComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
