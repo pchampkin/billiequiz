@@ -1,5 +1,6 @@
 <div>
     <div>
+        <button (click)="getQuestion()">New Question</button>
         <div>
             <h5>{{question.questionText}}</h5>
             <div *ngFor="let answer of question.answerArray; let i = index">
