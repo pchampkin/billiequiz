@@ -18,8 +18,8 @@ export class InMemoryQuestionDataService implements InMemoryDbService {
     return {questions};
   }
 
-  genId(questions: Question[]): number {
-    return questions.length > 0 ? Math.max(...questions.map(question => question.id)) + 1 : 1;
-  }
+  // genId(questions: Question[]): number {
+  //   return questions.length > 0 ? Math.max(...questions.map(question => question.id)) + 1 : 1;
+  // }
 
 }
