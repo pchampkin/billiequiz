@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  billieQuizSvcUrl: 'https://localhost:5000/BillieQuiz'
+  billieQuizSvcUrl: 'https://localhost/BillieQuiz'
 };
 
 /*
