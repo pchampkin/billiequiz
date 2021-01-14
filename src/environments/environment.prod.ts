@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  billieQuizSvcUrl: 'https://billiequizsvcdockerappservice.azurewebsites.net/billiequiz'
 };

@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { Question } from './question';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class QuestionService {
   // private billieQuizSvcUrl = 'billiequizwebapp.azurewebsites.net/BillieQuiz';
   // private billieQuizSvcUrl = 'api/questions';
   // private billieQuizSvcUrl = 'http://localhost:5000/billiequiz';
-  private billieQuizSvcUrl = 'https://billiequizsvcdockerappservice.azurewebsites.net/billiequiz';
+  // private billieQuizSvcUrl = 'https://billiequizsvcdockerappservice.azurewebsites.net/billiequiz';
+  private billieQuizSvcUrl = environment.billieQuizSvcUrl;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'allication/json' })
   }
@@ -22,7 +24,7 @@ export class QuestionService {
     private messageService: MessageService) { }
     
   private log(message: string) {
-    this.messageService.add('HeroService', message);
+    this.messageService.add('HerooService', message);
   }
   
   getQuestion(): Observable<Question> {
@@ -39,6 +41,18 @@ export class QuestionService {
       tap(_ => this.log(`checkAnswer id=${questionId} idx=${ansIdx} ${_}`)),
       catchError(this.handleError<boolean>(`checkAnswer id=${questionId} idx=${ansIdx}`))
     );
+  }
+
+  addQuestion(question: any, answerIdx: number) {
+    const url = `${this.billieQuizSvcUrl}/addquestion/${answerIdx + 1}`;
+    console.log(`1 - ${url}`);
+    this.http.post(url, question).subscribe();
+    console.log(`2 - ${url}`);
+//    .pipe(
+//      return 
+//      tap(_ => this.log(`addQuestion ${question}`)),
+//      catchError(this.handleError<boolean>(`add question ${question}`))
+//    );
   }
 
   getQuestions(): Observable<Question[]> {
