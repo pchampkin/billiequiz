@@ -1,0 +1,35 @@
+<div style="float: none; widows: 50%;">
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" novalidate>
+        <p>
+            <label for="questionText">Question </label>
+            <input type="text" id="questionText" name="questionText" formControlName="questionText">
+        </p>
+        <div
+            *ngIf="!questionText?.valid && (questionText?.dirty || questionText?.touched)">
+            <div [hidden]="!questionText.errors.required">
+                Question is required
+            </div>
+        </div>
+        <p>
+            <label for="correctAnswer">Correct Answer </label>
+            <input type="text" id="correctAnswer" name="correctAnswer" formControlName="correctAnswer">
+        </p>
+        <p>
+            <label for="wrongAnswer1">Wrong Answer </label>
+            <input type="text" id="wrongAnswer1" name="wrongAnswer1" formControlName="wrongAnswer1">
+        </p>
+        <p>
+            <label for="wrongAnswer2">Wrong Answer </label>
+            <input type="text" id="wrongAnswer2" name="wrongAnswer2" formControlName="wrongAnswer2">
+        </p>
+        <p>
+            <label for="wrongAnswer3">Wrong Answer </label>
+            <input type="text" id="wrongAnswer3" name="wrongAnswer3" formControlName="wrongAnswer3">
+        </p>
+
+        <p>
+            <button type="submit" [disabled]="!questionForm.valid">Submit</button>
+        </p>
+    </form>
+</div>
+

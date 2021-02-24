@@ -1,0 +1,19 @@
+<div>
+    <div>
+        <button (click)="getQuestion()">New Question</button>
+        <div>
+            <h5>{{question.questionText}}</h5>
+            <div *ngFor="let answer of question.answerArray; let i = index">
+                <p> 
+                    <button (click)="checkAnswer(i)">{{answer}}</button>
+                </p>
+            </div>
+        </div>
+        <!-- <app-message-box id="modal_1" class="hhidden">
+            You are so {{answer}}!
+            <button (click)="closeDialog()"> Close Dialog</button>
+        </app-message-box> -->
+
+        <app-message-box></app-message-box>
+    </div>
+</div>

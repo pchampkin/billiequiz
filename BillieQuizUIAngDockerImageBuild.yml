@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+    - master
+resources:
+  repositories:
+  - repository: self
+variables:
+- name: repo
+  value: pchampkin/billiequiz-ang-ui
+- name: version
+  value: 1.0.0
+- name: tag
+  value: $(version).$(Build.BuildId)
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Task - Build image
+      inputs:
+        buildContext: .
+        containerRegistry: DockerHubServiceConnection
+        repository: $(repo)
+        command: build
+        Dockerfile: '**/Dockerfile'
+        tags: |
+          latest
+          $(tag)
+    - task: Docker@2
+      displayName: Task - Push image
+      inputs:
+        containerRegistry: DockerHubServiceConnection
+        repository: $(repo)
+        command: push
+        tags: |
+          latest
+          $(tag)
+
